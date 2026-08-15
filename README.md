@@ -80,3 +80,7 @@ All 116 seed places are baked into the APK via `SeedData.kt`. User edits are per
 ## License
 
 MIT
+
+---
+
+made by ashyy <3

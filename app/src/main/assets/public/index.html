@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10">
+<meta name="description" content="A map-guide to Kota — the coaching city. Coachings, hostels, food, CBT centres & more, with live tracking and fares.">
+<title>NaviKota — coaching city, mapped</title>
+<script>
+  try {
+    var t = localStorage.getItem('navikota.theme')
+    document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark')
+    if (t === 'light') document.querySelector('meta[name="theme-color"]').content = '#e9ebef'
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark')
+  }
+</script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script type="module" crossorigin src="./assets/index-BLhLT33H.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-gFHrOUWv.css">
+</head>
+<body>
+  <div id="map" aria-label="Kota map"></div>
+
+  <header id="bar">
+    <button id="brand-btn" type="button" title="About &amp; data">Navi<span>Kota</span></button>
+    <button id="open-search" type="button" aria-label="Search Kota">
+      <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">
+        <circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M10.5 10.5 L14.2 14.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+      <span class="ph">Search places, notes, fares…</span>
+      <kbd>⌘K</kbd>
+    </button>
+    <button id="layers-btn" type="button" aria-expanded="false" aria-controls="layers" title="Categories">
+      <span class="dots" aria-hidden="true"></span>
+      <span class="n"></span>
+    </button>
+    <button id="theme-btn" type="button" aria-label="Change theme" title="Theme"></button>
+  </header>
+
+  <div id="layers-scrim" hidden></div>
+  <div id="dock">
+    <nav id="layers" aria-label="Map categories">
+      <div class="layers-head">
+        <span class="t">Categories</span>
+        <button type="button" data-all>All</button>
+        <button type="button" data-none>None</button>
+        <button type="button" class="layers-close" aria-label="Close categories">&times;</button>
+      </div>
+      <div id="layer-chips"></div>
+    </nav>
+    <footer id="foot">
+      <span class="by">made by <b>ashyy</b></span>
+    </footer>
+  </div>
+
+  <div id="attrib">
+    <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>
+  </div>
+
+  <section id="panel" hidden aria-live="polite"></section>
+
+  <div id="route-badge" hidden>
+    <div class="rb-line">
+      <span class="rb-dest" id="rb-dest"></span>
+      <button id="rb-close" type="button" aria-label="Close route">&times;</button>
+    </div>
+    <div class="rb-meta">
+      <span class="eta" id="rb-eta"></span>
+      <span class="rb-cost" id="rb-cost"></span>
+    </div>
+    <div class="rb-meta">
+      <span id="rb-dist"></span>
+      <a id="gmaps-link" target="_blank" rel="noopener">Google Maps ↗</a>
+    </div>
+  </div>
+
+  <div id="palette" hidden role="dialog" aria-modal="true" aria-label="Search Kota">
+    <div id="palette-box">
+      <div id="palette-input-row">
+        <span id="palette-glyph" aria-hidden="true">›</span>
+        <input id="palette-input" type="text" autocomplete="off" autocorrect="off"
+               autocapitalize="off" spellcheck="false" enterkeyhint="go"
+               placeholder="allen · kachori · hostel · book exam …"
+               aria-label="Search Kota" aria-controls="palette-results" aria-expanded="true">
+        <span id="palette-timing" aria-hidden="true"></span>
+        <button id="palette-close" type="button" aria-label="Close search">&times;</button>
+      </div>
+      <div id="palette-results" role="listbox"></div>
+      <footer id="palette-foot">
+        <span class="hint"><kbd>↑↓</kbd> move</span>
+        <span class="hint"><kbd>↵</kbd> open</span>
+        <span class="hint"><kbd>tab</kbd> route</span>
+        <span id="palette-count"></span>
+      </footer>
+    </div>
+  </div>
+
+  <div id="boot">loading kota…</div>
+
+  <input type="file" id="import-file" accept=".json,application/json" style="display:none">
+
+</body>
+</html>

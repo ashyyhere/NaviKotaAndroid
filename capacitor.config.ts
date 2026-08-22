@@ -5,7 +5,8 @@ const config: CapacitorConfig = {
   appName: 'NaviKota',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
+    url: 'https://navikota.pages.dev',
+    cleartext: true
   },
   plugins: {
     Geolocation: {

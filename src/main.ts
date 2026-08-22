@@ -1,3 +1,4 @@
+import "leaflet/dist/leaflet.css";
 import "./styles.css";
 import { load, state } from "./lib/store";
 import { CATS } from "./categories";

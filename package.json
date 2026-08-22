@@ -13,7 +13,8 @@
     "test": "npm run typecheck && npm run build",
     "cap:add": "npx cap add android",
     "cap:sync": "npx cap sync",
-    "cap:open": "npx cap open android"
+    "cap:open": "npx cap open android",
+    "android:build": "npm run build && npx cap sync"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
